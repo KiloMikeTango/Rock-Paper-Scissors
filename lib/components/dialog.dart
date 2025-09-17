@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rock_paper_scissors/pages/home_page.dart';
+import 'package:rock_paper_scissors/Screens/HomePage/home_page.dart';
 
 class DialogBox extends StatefulWidget {
   final String? title;
-  final Function()? onPressed;
-  const DialogBox({super.key, required this.title, required this.onPressed});
+  final Function()? onContinue;
+  const DialogBox({super.key, required this.title, required this.onContinue});
 
   @override
   State<DialogBox> createState() => _DialogBoxState();
@@ -19,10 +19,14 @@ class _DialogBoxState extends State<DialogBox>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 400));
-    _scaleAnimation =
-        CurvedAnimation(parent: _controller, curve: Curves.elasticOut);
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 400),
+    );
+    _scaleAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.elasticOut,
+    );
     _controller.forward();
   }
 
@@ -55,8 +59,8 @@ class _DialogBoxState extends State<DialogBox>
   }
 
   String _getEmoji() {
-    if (widget.title == "You Win!") return "🎉";
-    if (widget.title == "You Lose!") return "😢";
+    if (widget.title == "YOU WON!") return "🎉";
+    if (widget.title == "YOU LOSE!") return "😢";
     return "🤝";
   }
 
@@ -85,10 +89,7 @@ class _DialogBoxState extends State<DialogBox>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                _getEmoji(),
-                style: TextStyle(fontSize: 40),
-              ),
+              Text(_getEmoji(), style: TextStyle(fontSize: 40)),
               SizedBox(height: 10),
               Text(
                 widget.title ?? "",
@@ -107,9 +108,12 @@ class _DialogBoxState extends State<DialogBox>
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black.withOpacity(0.7),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
+                      ),
                     ),
                     onPressed: () {
                       Navigator.pop(context);
@@ -132,14 +136,17 @@ class _DialogBoxState extends State<DialogBox>
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white.withOpacity(0.9),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
+                      ),
                     ),
-                    onPressed: widget.onPressed,
+                    onPressed: widget.onContinue,
                     icon: Icon(Icons.replay, color: Colors.blueAccent),
                     label: Text(
-                      'Play Again',
+                      'Continue',
                       style: GoogleFonts.shareTech(
                         fontSize: 18,
                         color: Colors.blueAccent,

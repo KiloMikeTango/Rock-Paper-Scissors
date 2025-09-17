@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rock_paper_scissors/pages/home_page.dart';
+import 'package:rock_paper_scissors/Screens/HomePage/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,5 +17,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
